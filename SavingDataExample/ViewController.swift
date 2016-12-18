@@ -18,15 +18,9 @@ class ViewController: UIViewController {
     // The list of students (starts empty)
     var students : [Student] = []
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        // Create a list of students (will be many students with no name to start)
-        for _ in 0...14 {
-            students.append( Student(firstName: "") )
-        }
         
     }
 
@@ -47,9 +41,27 @@ class ViewController: UIViewController {
                 textField.addTarget(self, action: #selector(self.saveClassList), for: .editingDidEnd)
             }
         }
+        
+        // Attempt to load the students from disk if there are any
+        if let savedClassList = loadClassList() {
+            
+            // Put the saved class list in the students list
+            students += savedClassList
+            
+            // Iterate over the student list and load values
+            for (position, firstName) in firstNames.enumerated() {
+                firstName.text = students[position].firstName
+            }
+            
+        } else {
+            // Create a list of students (will be many students with no name to start)
+            for _ in 0...14 {
+                students.append( Student(firstName: "") )
+            }
+        }
     }
     
-    // MARK: Respond to edits
+    // MARK: NSCoding
     
     // This function will save any changes to the class list
     // It is called when any text field has a changed value
@@ -63,7 +75,21 @@ class ViewController: UIViewController {
                 print("\(position): \(first)")
             }
         }
+        
+        // Try to save the data in the students list
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(students, toFile: Student.ArchiveURL.path)
+        
+        // Log an error if this didn't work
+        if isSuccessfulSave == false {
+            print("Failed to save student names...")
+        }
     }
-
+    
+    // Try to load student names
+    func loadClassList() -> [Student]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Student.ArchiveURL.path) as? [Student]
+    }
+    
+   
 }
 

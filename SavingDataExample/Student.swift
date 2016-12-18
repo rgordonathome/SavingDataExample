@@ -8,15 +8,45 @@
 
 import UIKit
 
-class Student {
+class Student : NSObject, NSCoding {
     
     // MARK: Properties
     var firstName : String
+    
+    // MARK: Paths for archiving data across sessions
+    static let DocumentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    static let ArchiveURL = DocumentsDirectory[0].appendingPathComponent("students")
+    
+    // MARK: Types
+    struct PropertyKey {
+        static let firstNameKey = "firstName"
+    }
     
     init(firstName : String) {
         
         // Initialize stored properties
         self.firstName = firstName
+        
+        // Run the initializer on the superclass
+        super.init()
+        
+    }
+    
+    // MARK: NSCoding required functions
+    
+    // This allows the Meal class to save values
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(firstName, forKey: PropertyKey.firstNameKey)
+    }
+    
+    // This allows the Meal class to load values from the file
+    required convenience init?(coder aDecoder : NSCoder) {
+        
+        // Load the first name
+        let firstName = aDecoder.decodeObject(forKey: PropertyKey.firstNameKey) as! String
+        
+        // Now call the designated (main) initializer for this class
+        self.init(firstName: firstName)
         
     }
     
