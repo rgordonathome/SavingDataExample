@@ -15,12 +15,17 @@ class ViewController: UIViewController {
     // The list of first name text fields
     @IBOutlet var firstNames: [UITextField]!
     
+    // The list of last name text fields
+    @IBOutlet var lastNames: [UITextField]!
+    
     // The list of students (starts empty)
     var students : [Student] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Debug
         
     }
 
@@ -52,11 +57,14 @@ class ViewController: UIViewController {
             for (position, firstName) in firstNames.enumerated() {
                 firstName.text = students[position].firstName
             }
-            
+            // Iterate over the student list and load values
+            for (position, lastName) in lastNames.enumerated() {                
+                lastName.text = students[position].lastName
+            }
         } else {
             // Create a list of students (will be many students with no name to start)
             for _ in 0...14 {
-                students.append( Student(firstName: "") )
+                students.append( Student(firstName: "", lastName: "") )
             }
         }
     }
@@ -73,6 +81,14 @@ class ViewController: UIViewController {
             if let first = firstName.text {
                 students[position].firstName = first
                 print("\(position): \(first)")
+            }
+        }
+        
+        // Iterate over all the last name text fields in the class list
+        for (position, lastName) in lastNames.enumerated() {
+            if let last = lastName.text {
+                students[position].lastName = last
+                print("\(position): \(last)")
             }
         }
         

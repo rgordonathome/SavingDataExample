@@ -12,6 +12,7 @@ class Student : NSObject, NSCoding {
     
     // MARK: Properties
     var firstName : String
+    var lastName : String
     
     // MARK: Paths for archiving data across sessions
     static let DocumentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -20,12 +21,14 @@ class Student : NSObject, NSCoding {
     // MARK: Types
     struct PropertyKey {
         static let firstNameKey = "firstName"
+        static let lastNameKey = "lastName"
     }
     
-    init(firstName : String) {
+    init(firstName : String, lastName : String) {
         
         // Initialize stored properties
         self.firstName = firstName
+        self.lastName = lastName
         
         // Run the initializer on the superclass
         super.init()
@@ -37,6 +40,7 @@ class Student : NSObject, NSCoding {
     // This allows the Meal class to save values
     func encode(with aCoder: NSCoder) {
         aCoder.encode(firstName, forKey: PropertyKey.firstNameKey)
+        aCoder.encode(lastName, forKey: PropertyKey.lastNameKey)
     }
     
     // This allows the Meal class to load values from the file
@@ -44,9 +48,13 @@ class Student : NSObject, NSCoding {
         
         // Load the first name
         let firstName = aDecoder.decodeObject(forKey: PropertyKey.firstNameKey) as! String
+
+        // Load the last name
+        let lastName = aDecoder.decodeObject(forKey: PropertyKey.lastNameKey) as! String
+
         
         // Now call the designated (main) initializer for this class
-        self.init(firstName: firstName)
+        self.init(firstName: firstName, lastName: lastName)
         
     }
     
