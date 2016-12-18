@@ -11,12 +11,23 @@ import UIKit
 class ViewController: UIViewController {
 
     // MARK: Properties
+    
+    // The list of first name text fields
     @IBOutlet var firstNames: [UITextField]!
+    
+    // The list of students (starts empty)
+    var students : [Student] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        print(firstNames.count)
+        
+        // Create a list of students (will be many students with no name to start)
+        for _ in 0...14 {
+            students.append( Student(firstName: "") )
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,8 +57,9 @@ class ViewController: UIViewController {
         
         // Iterate over all the first name text fields in the class list
         for (position, firstName) in firstNames.enumerated() {
-            // If there is a non-nil value in the text field, print it
+            // If there is a non-nil value in the text field, modify the list of saved student names
             if let first = firstName.text {
+                students[position].firstName = first
                 print("\(position): \(first)")
             }
         }
