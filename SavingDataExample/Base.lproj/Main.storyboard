@@ -255,6 +255,23 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outletCollection property="firstNames" destination="R6p-CD-ufy" collectionClass="NSMutableArray" id="LKk-WS-t6q"/>
+                        <outletCollection property="firstNames" destination="pPx-ws-k5T" collectionClass="NSMutableArray" id="bVJ-90-cjq"/>
+                        <outletCollection property="firstNames" destination="Nvo-Gc-NMy" collectionClass="NSMutableArray" id="tLH-x0-9F9"/>
+                        <outletCollection property="firstNames" destination="FRh-4B-aZa" collectionClass="NSMutableArray" id="Cbd-U8-4fR"/>
+                        <outletCollection property="firstNames" destination="Wua-Qo-W1f" collectionClass="NSMutableArray" id="T1T-RV-tkG"/>
+                        <outletCollection property="firstNames" destination="u5e-hT-6Uu" collectionClass="NSMutableArray" id="U4h-wL-qHP"/>
+                        <outletCollection property="firstNames" destination="pnO-Rn-KUr" collectionClass="NSMutableArray" id="cdK-hq-WZG"/>
+                        <outletCollection property="firstNames" destination="LkW-oM-JfD" collectionClass="NSMutableArray" id="WRx-w8-lJX"/>
+                        <outletCollection property="firstNames" destination="L7S-Te-zUe" collectionClass="NSMutableArray" id="mo8-Ed-sjV"/>
+                        <outletCollection property="firstNames" destination="0rY-QM-uGB" collectionClass="NSMutableArray" id="Ogm-qA-AUs"/>
+                        <outletCollection property="firstNames" destination="7nc-kz-Qhf" collectionClass="NSMutableArray" id="CvG-NL-iWN"/>
+                        <outletCollection property="firstNames" destination="uKo-wo-9TU" collectionClass="NSMutableArray" id="8nI-zn-xFP"/>
+                        <outletCollection property="firstNames" destination="aMw-Ey-z7v" collectionClass="NSMutableArray" id="Ub9-qp-Q39"/>
+                        <outletCollection property="firstNames" destination="y6B-0a-v3b" collectionClass="NSMutableArray" id="lUz-mn-ldJ"/>
+                        <outletCollection property="firstNames" destination="3jJ-MJ-jZf" collectionClass="NSMutableArray" id="LPh-CS-ScR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
